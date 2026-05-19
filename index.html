@@ -500,7 +500,7 @@
 
     let completedHours = 0;
 
-    courseData.forEach(course => {
+    courseData.forEach((course, index) => {
 
       totalHours += course.total;
 
@@ -523,7 +523,7 @@
           <div class="course-left">
 
             <div class="course-name">
-              ${course.name}
+              ${index + 1}. ${course.name}
             </div>
 
             <div class="course-tag">
