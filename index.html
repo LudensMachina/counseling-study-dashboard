@@ -440,7 +440,7 @@
       <div class="card">
 
         <div class="card-title">
-          已完成学时
+          已完成课程数
         </div>
 
         <div
@@ -455,7 +455,7 @@
       <div class="card">
 
         <div class="card-title">
-          总学时
+          总课程数
         </div>
 
         <div
@@ -499,8 +499,6 @@
 
       <br><br>
 
-      注：1 学时 = 45 分钟。
-
     </div>
 
   </div>
@@ -522,7 +520,7 @@
           {
             name: "心理学导论",
             form: "培训形式：线上录播",
-            total: 16,
+            total: 22,
             completed: 0,
             logs: []
           },
@@ -530,7 +528,7 @@
           {
             name: "社会心理学",
             form: "培训形式：线上录播",
-            total: 16,
+            total: 15,
             completed: 0,
             logs: []
           },
@@ -538,7 +536,7 @@
           {
             name: "人格心理学",
             form: "培训形式：线上录播",
-            total: 16,
+            total: 13,
             completed: 0,
             logs: []
           },
@@ -546,7 +544,7 @@
           {
             name: "发展心理学",
             form: "培训形式：线上录播",
-            total: 16,
+            total: 26,
             completed: 0,
             logs: []
           },
@@ -562,7 +560,7 @@
           {
             name: "咨询心理学",
             form: "培训形式：线上录播",
-            total: 16,
+            total: 25,
             completed: 0,
             logs: []
           }
@@ -588,7 +586,7 @@
           {
             name: "情绪调节与压力管理",
             form: "培训形式：线上录播",
-            total: 16,
+            total: 18,
             completed: 0,
             logs: []
           },
@@ -596,7 +594,7 @@
           {
             name: "心理危机识别与初步处理",
             form: "培训形式：线上录播",
-            total: 8,
+            total: 9,
             completed: 0,
             logs: []
           },
@@ -604,7 +602,7 @@
           {
             name: "家庭教育与心理健康科普",
             form: "培训形式：线上录播",
-            total: 16,
+            total: 13,
             completed: 0,
             logs: []
           },
@@ -703,7 +701,7 @@
               ${course.completed}
               /
               ${course.total}
-              学时
+              课程数
 
             </div>
 
@@ -735,7 +733,7 @@
 
                     ${log.date}
                     ·
-                    ${log.duration} 学时
+                    ${log.duration} 课程数
 
                   </div>
 
@@ -778,10 +776,10 @@
       .innerText = totalCourses;
 
     document.getElementById("completed-hours")
-      .innerText = completedHours + " 学时";
+      .innerText = completedHours + " 课程数";
 
     document.getElementById("total-hours")
-      .innerText = totalHours + " 学时";
+      .innerText = totalHours + " 课程数";
 
     document.getElementById("overall-progress")
       .innerText = overallProgress + "%";
