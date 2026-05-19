@@ -768,9 +768,9 @@
     });
 
     const overallProgress =
-      Math.round(
+      (
         (completedHours / totalHours) * 100
-      );
+      ).toFixed(2);
 
     document.getElementById("total-courses")
       .innerText = totalCourses;
