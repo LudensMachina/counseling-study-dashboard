@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>学习热力图</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px;
+      background: #0b1020;
+      color: white;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    h1 {
+      font-size: 52px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: #94a3b8;
+      margin-bottom: 50px;
+    }
+
+    .stats {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 50px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 24px;
+      min-width: 220px;
+    }
+
+    .card-title {
+      color: #94a3b8;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .card-value {
+      font-size: 36px;
+      font-weight: bold;
+    }
+
+    .heatmap-container {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 30px;
+      overflow-x: auto;
+    }
+
+    .heatmap {
+      display: flex;
+      gap: 4px;
+    }
+
+    .week {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .day {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      background: #161b22;
+      transition: 0.2s;
+    }
+
+    .day:hover {
+      transform: scale(1.2);
+    }
+
+    .level-1 { background: #0e4429; }
+    .level-2 { background: #006d32; }
+    .level-3 { background: #26a641; }
+    .level-4 { background: #39d353; }
+
+    .legend {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      color: #94a3b8;
+      font-size: 12px;
+    }
+
+    .legend-box {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+    }
+
+    .records {
+      margin-top: 50px;
+    }
+
+    .record {
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 15px;
+    }
+
+    .record-date {
+      color: #39d353;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .record-note {
+      color: #d1d5db;
+      line-height: 1.6;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>学习热力图</h1>
+
+  <div class="subtitle">
+    Learning Dashboard
+  </div>
+
+  <div class="stats">
+
+    <div class="card">
+      <div class="card-title">累计学习天数</div>
+      <div class="card-value" id="study-days">0</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">累计学习时长</div>
+      <div class="card-value" id="study-hours">0h</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">当前 Streak</div>
+      <div class="card-value" id="streak">0</div>
+    </div>
+
+  </div>
+
+  <div class="heatmap-container">
+
+    <div class="heatmap" id="heatmap"></div>
+
+    <div class="legend">
+
+      <span>Less</span>
+
+      <div class="legend-box" style="background:#161b22;"></div>
+      <div class="legend-box" style="background:#0e4429;"></div>
+      <div class="legend-box" style="background:#006d32;"></div>
+      <div class="legend-box" style="background:#26a641;"></div>
+      <div class="legend-box" style="background:#39d353;"></div>
+
+      <span>More</span>
+
+    </div>
+
+  </div>
+
+  <div class="records" id="records"></div>
+
+  <script>
+
+    // =====================
+    // 以后每天只改这里
+    // =====================
+
+    const studyData = [
+
+    ];
+
+    // =====================
+
+    const heatmap =
+      document.getElementById("heatmap");
+
+    const records =
+      document.getElementById("records");
+
+    const startDate =
+      new Date("2026-01-01");
+
+    const totalDays = 365;
+
+    for(let i = 0; i < 53; i++) {
+
+      const week =
+        document.createElement("div");
+
+      week.className = "week";
+
+      for(let j = 0; j < 7; j++) {
+
+        const dayIndex = i * 7 + j;
+
+        if(dayIndex >= totalDays) break;
+
+        const currentDate =
+          new Date(startDate);
+
+        currentDate.setDate(
+          startDate.getDate() + dayIndex
+        );
+
+        const dateString =
+          currentDate.toISOString().split("T")[0];
+
+        const day =
+          document.createElement("div");
+
+        day.className = "day";
+
+        const found = studyData.find(
+          d => d.date === dateString
+        );
+
+        if(found) {
+
+          day.classList.add(
+            `level-${found.level}`
+          );
+
+          day.title =
+            `${found.date}\n${found.note}`;
+        }
+
+        week.appendChild(day);
+
+      }
+
+      heatmap.appendChild(week);
+
+    }
+
+    // Stats
+
+    document.getElementById("study-days")
+      .innerText = studyData.length;
+
+    const totalHours = studyData.reduce(
+      (acc, cur) => acc + cur.hours,
+      0
+    );
+
+    document.getElementById("study-hours")
+      .innerText = totalHours + "h";
+
+    document.getElementById("streak")
+      .innerText = studyData.length;
+
+    // Records
+
+    studyData
+      .slice()
+      .reverse()
+      .forEach(item => {
+
+      const div =
+        document.createElement("div");
+
+      div.className = "record";
+
+      div.innerHTML = `
+        <div class="record-date">
+          ${item.date}
+        </div>
+
+        <div class="record-note">
+          ${item.note}
+        </div>
+      `;
+
+      records.appendChild(div);
+
+    });
+
+  </script>
+
+</body>
+</html>
