@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>心理学学习进度</title>
+  <title>Counseling Study Track</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -274,6 +274,59 @@
 
     }
 
+    .logs {
+
+      margin-top: 18px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 12px;
+
+    }
+
+    .log-item {
+
+      padding-top: 12px;
+
+      border-top:
+        1px dashed rgba(92,107,128,0.18);
+
+    }
+
+    .log-date {
+
+      font-size: 12px;
+
+      color: var(--muted);
+
+      margin-bottom: 4px;
+
+      letter-spacing: 0.2px;
+
+    }
+
+    .log-notes {
+
+      font-size: 14px;
+
+      line-height: 1.8;
+
+      color: var(--text);
+
+    }
+
+    .empty-log {
+
+      margin-top: 14px;
+
+      font-size: 13px;
+
+      color: var(--muted);
+
+    }
+
     .footer {
 
       margin-top: 72px;
@@ -412,7 +465,9 @@
 
       每次学习后，只需修改
       <code>completed</code>
-      的数值即可。
+      和
+      <code>logs</code>
+      即可。
 
       <br><br>
 
@@ -425,93 +480,189 @@
   <script>
 
     // =====================================
-    // 以后只修改 completed 的数字
+    // 以后只修改 completed 和 logs
     // =====================================
 
     const courseData = [
 
       {
         name: "基础理论课程-心理学导论",
+
         form: "培训形式：线上录播",
+
         total: 16,
-        completed: 0
+
+        completed: 0,
+
+        logs: [
+
+        ]
+
       },
 
       {
         name: "基础理论课程-社会心理学",
+
         form: "培训形式：线上录播",
+
         total: 16,
-        completed: 0
+
+        completed: 0,
+
+        logs: [
+
+        ]
+
       },
 
       {
         name: "基础理论课程-人格心理学",
+
         form: "培训形式：线上录播",
+
         total: 16,
-        completed: 0
+
+        completed: 0,
+
+        logs: [
+
+        ]
+
       },
 
       {
         name: "基础理论课程-发展心理学",
+
         form: "培训形式：线上录播",
+
         total: 16,
-        completed: 0
+
+        completed: 0,
+
+        logs: [
+
+        ]
+
       },
 
       {
         name: "基础理论课程-异常心理学",
+
         form: "培训形式：线上录播",
+
         total: 16,
-        completed: 0
+
+        completed: 0,
+
+        logs: [
+
+        ]
+
       },
 
       {
         name: "基础理论课程-咨询心理学",
+
         form: "培训形式：线上录播",
+
         total: 16,
-        completed: 0
+
+        completed: 0,
+
+        logs: [
+
+        ]
+
       },
 
       {
         name: "实务课程-初次接待与会谈技巧",
+
         form: "培训形式：线上录播",
+
         total: 16,
-        completed: 0
+
+        completed: 0,
+
+        logs: [
+
+        ]
+
       },
 
       {
         name: "实务课程-情绪调节与压力管理",
+
         form: "培训形式：线上录播",
+
         total: 16,
-        completed: 0
+
+        completed: 0,
+
+        logs: [
+
+        ]
+
       },
 
       {
         name: "实务课程-心理危机识别与辅助处置",
+
         form: "培训形式：线上录播",
+
         total: 8,
-        completed: 0
+
+        completed: 0,
+
+        logs: [
+
+        ]
+
       },
 
       {
         name: "实务课程-心理咨询专业伦理与相关法律规范",
+
         form: "培训形式：线上录播",
+
         total: 8,
-        completed: 0
+
+        completed: 0,
+
+        logs: [
+
+        ]
+
       },
 
       {
         name: "实务课程-家庭教育与心理健康科普",
+
         form: "培训形式：线上录播",
+
         total: 16,
-        completed: 0
+
+        completed: 0,
+
+        logs: [
+
+        ]
+
       },
 
       {
         name: "实务课程-心理咨询实务观摩",
+
         form: "培训形式：线上录播",
+
         total: 16,
-        completed: 0
+
+        completed: 0,
+
+        logs: [
+
+        ]
+
       }
 
     ];
@@ -569,6 +720,45 @@
             class="progress-fill"
             style="width:${progress}%"
           ></div>
+
+        </div>
+
+        <div class="logs">
+
+          ${
+            course.logs.length > 0
+
+            ?
+
+            course.logs.map(log => `
+
+              <div class="log-item">
+
+                <div class="log-date">
+
+                  ${log.date}
+                  ·
+                  ${log.duration} 学时
+
+                </div>
+
+                <div class="log-notes">
+
+                  ${log.notes}
+
+                </div>
+
+              </div>
+
+            `).join("")
+
+            :
+
+            `<div class="empty-log">
+              暂无学习记录
+            </div>`
+
+          }
 
         </div>
 
