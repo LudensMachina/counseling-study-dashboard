@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>Psychology Learning Dashboard</title>
+  <title>心理学学习进度</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,40 +21,55 @@
     }
 
     :root {
+
       --bg: #0a0a0a;
       --card: #111111;
+
       --border: rgba(255,255,255,0.06);
 
       --text: #fafafa;
       --muted: #71717a;
 
       --green: #4ade80;
+
       --track: #27272a;
+
     }
 
     body {
+
       margin: 0;
+
       background: var(--bg);
+
       color: var(--text);
 
       font-family:
         "Inter",
-        "SF Pro Display",
+        "PingFang SC",
+        "Microsoft YaHei",
         sans-serif;
 
       padding: 56px;
 
       -webkit-font-smoothing: antialiased;
+
       text-rendering: optimizeLegibility;
+
     }
 
     .container {
+
       max-width: 1100px;
+
       margin: 0 auto;
+
     }
 
     h1 {
+
       font-size: 64px;
+
       font-weight: 800;
 
       letter-spacing: -3px;
@@ -62,9 +77,11 @@
       margin: 0 0 14px 0;
 
       line-height: 0.95;
+
     }
 
     .subtitle {
+
       color: var(--muted);
 
       font-size: 15px;
@@ -72,9 +89,11 @@
       letter-spacing: 0.3px;
 
       margin-bottom: 64px;
+
     }
 
     .stats {
+
       display: grid;
 
       grid-template-columns:
@@ -83,9 +102,11 @@
       gap: 18px;
 
       margin-bottom: 56px;
+
     }
 
     .card {
+
       background: var(--card);
 
       border: 1px solid var(--border);
@@ -93,9 +114,11 @@
       border-radius: 24px;
 
       padding: 28px;
+
     }
 
     .card-title {
+
       color: var(--muted);
 
       font-size: 13px;
@@ -103,17 +126,21 @@
       margin-bottom: 12px;
 
       letter-spacing: 0.3px;
+
     }
 
     .card-value {
+
       font-size: 44px;
 
       font-weight: 700;
 
       letter-spacing: -2px;
+
     }
 
     .section-title {
+
       font-size: 22px;
 
       font-weight: 700;
@@ -121,15 +148,21 @@
       letter-spacing: -0.8px;
 
       margin-bottom: 24px;
+
     }
 
     .courses {
+
       display: flex;
+
       flex-direction: column;
+
       gap: 18px;
+
     }
 
     .course {
+
       background: var(--card);
 
       border: 1px solid var(--border);
@@ -137,34 +170,65 @@
       border-radius: 24px;
 
       padding: 24px;
+
     }
 
     .course-top {
+
       display: flex;
 
       justify-content: space-between;
 
-      align-items: center;
+      align-items: flex-start;
 
       margin-bottom: 16px;
+
+      gap: 20px;
+
+    }
+
+    .course-left {
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 6px;
+
     }
 
     .course-name {
+
       font-size: 18px;
 
       font-weight: 600;
 
       letter-spacing: -0.4px;
+
+    }
+
+    .course-tag {
+
+      font-size: 12px;
+
+      color: var(--muted);
+
     }
 
     .course-meta {
+
       font-size: 14px;
 
       color: var(--muted);
+
+      white-space: nowrap;
+
     }
 
     .progress-bar {
+
       width: 100%;
+
       height: 10px;
 
       background: var(--track);
@@ -172,9 +236,11 @@
       border-radius: 999px;
 
       overflow: hidden;
+
     }
 
     .progress-fill {
+
       height: 100%;
 
       background: var(--green);
@@ -182,14 +248,31 @@
       border-radius: 999px;
 
       transition: width 0.4s ease;
+
     }
 
     .footer {
+
       margin-top: 72px;
 
       color: var(--muted);
 
       font-size: 13px;
+
+      line-height: 1.7;
+
+    }
+
+    code {
+
+      background: rgba(255,255,255,0.06);
+
+      padding: 2px 6px;
+
+      border-radius: 6px;
+
+      font-size: 12px;
+
     }
 
     @media (max-width: 768px) {
@@ -206,6 +289,10 @@
         font-size: 36px;
       }
 
+      .course-top {
+        flex-direction: column;
+      }
+
     }
 
   </style>
@@ -216,12 +303,11 @@
   <div class="container">
 
     <h1>
-      Psychology<br>
-      Learning Dashboard
+      心理学学习进度
     </h1>
 
     <div class="subtitle">
-      Personal learning progress tracker
+      心理咨询基础培训 · 学习仪表盘
     </div>
 
     <div class="stats">
@@ -229,7 +315,7 @@
       <div class="card">
 
         <div class="card-title">
-          Total Courses
+          总课程数
         </div>
 
         <div
@@ -244,14 +330,14 @@
       <div class="card">
 
         <div class="card-title">
-          Completed Hours
+          已完成学时
         </div>
 
         <div
           class="card-value"
           id="completed-hours"
         >
-          0h
+          0
         </div>
 
       </div>
@@ -259,14 +345,14 @@
       <div class="card">
 
         <div class="card-title">
-          Total Hours
+          总学时
         </div>
 
         <div
           class="card-value"
           id="total-hours"
         >
-          0h
+          0
         </div>
 
       </div>
@@ -274,7 +360,7 @@
       <div class="card">
 
         <div class="card-title">
-          Overall Progress
+          总进度
         </div>
 
         <div
@@ -289,7 +375,7 @@
     </div>
 
     <div class="section-title">
-      Courses
+      课程列表
     </div>
 
     <div
@@ -298,76 +384,120 @@
     ></div>
 
     <div class="footer">
-      Update progress manually in the
-      <code>courseData</code> array.
+
+      每次学习后，只需修改
+      <code>completed</code>
+      的数值即可。
+
+      <br><br>
+
+      注：1 学时 = 45 分钟。
+
     </div>
 
   </div>
 
   <script>
 
-    // ==========================
-    // ONLY EDIT THIS PART
-    // ==========================
+    // =====================================
+    // 以后只修改 completed 的数字
+    // =====================================
 
     const courseData = [
 
       {
         name: "普通心理学",
+        form: "培训形式：录播课",
         total: 48,
         completed: 0
       },
 
       {
         name: "社会心理学",
+        form: "培训形式：录播课",
         total: 48,
         completed: 0
       },
 
       {
         name: "人格心理学",
+        form: "培训形式：录播课",
         total: 48,
         completed: 0
       },
 
       {
         name: "发展心理学",
+        form: "培训形式：录播课",
         total: 48,
         completed: 0
       },
 
       {
         name: "异常心理学",
+        form: "培训形式：录播课",
         total: 48,
         completed: 0
       },
 
       {
         name: "咨询心理学",
+        form: "培训形式：录播课",
         total: 48,
         completed: 0
       },
 
       {
         name: "心理测量学",
+        form: "培训形式：录播课",
         total: 48,
         completed: 0
       },
 
       {
         name: "心理咨询技能",
+        form: "培训形式：录播课",
         total: 48,
+        completed: 0
+      },
+
+      {
+        name: "心理咨询伦理",
+        form: "培训形式：录播课",
+        total: 24,
+        completed: 0
+      },
+
+      {
+        name: "心理危机干预",
+        form: "培训形式：录播课",
+        total: 24,
+        completed: 0
+      },
+
+      {
+        name: "心理咨询案例观摩",
+        form: "培训形式：直播课",
+        total: 24,
+        completed: 0
+      },
+
+      {
+        name: "心理咨询实务训练",
+        form: "培训形式：直播课",
+        total: 24,
         completed: 0
       }
 
     ];
 
-    // ==========================
+    // =====================================
 
     const coursesContainer =
       document.getElementById("courses");
 
     let totalHours = 0;
+
     let completedHours = 0;
 
     courseData.forEach(course => {
@@ -390,12 +520,20 @@
 
         <div class="course-top">
 
-          <div class="course-name">
-            ${course.name}
+          <div class="course-left">
+
+            <div class="course-name">
+              ${course.name}
+            </div>
+
+            <div class="course-tag">
+              ${course.form}
+            </div>
+
           </div>
 
           <div class="course-meta">
-            ${course.completed} / ${course.total}h
+            ${course.completed} / ${course.total} 学时
           </div>
 
         </div>
@@ -424,10 +562,10 @@
       .innerText = courseData.length;
 
     document.getElementById("completed-hours")
-      .innerText = completedHours + "h";
+      .innerText = completedHours + " 学时";
 
     document.getElementById("total-hours")
-      .innerText = totalHours + "h";
+      .innerText = totalHours + " 学时";
 
     document.getElementById("overall-progress")
       .innerText = overallProgress + "%";
