@@ -74,7 +74,7 @@
 
     h1 {
 
-      margin: 0;
+      margin: 0 0 4px 0;
 
       font-size: 54px;
 
@@ -85,38 +85,6 @@
       line-height: 1.1;
 
     }
-
-    .study-link {
-
-  display: inline-flex;
-
-  align-items: center;
-
-  margin-bottom: 40px;
-
-  padding: 10px 16px;
-
-  border-radius: 12px;
-
-  background: rgba(37,99,235,0.08);
-
-  color: #1d4ed8;
-
-  text-decoration: none;
-
-  font-size: 14px;
-
-  transition: 0.2s ease;
-
-}
-
-.study-link:hover {
-
-  background: rgba(37,99,235,0.14);
-
-  transform: translateY(-1px);
-
-}
 
     .subtitle {
 
@@ -129,6 +97,38 @@
       font-size: 15px;
 
       letter-spacing: 0.3px;
+
+    }
+
+    .study-link {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      margin-bottom: 40px;
+
+      padding: 10px 16px;
+
+      border-radius: 12px;
+
+      background: rgba(37,99,235,0.08);
+
+      color: #1d4ed8;
+
+      text-decoration: none;
+
+      font-size: 14px;
+
+      transition: 0.2s ease;
+
+    }
+
+    .study-link:hover {
+
+      background: rgba(37,99,235,0.14);
+
+      transform: translateY(-1px);
 
     }
 
@@ -190,7 +190,9 @@
 
       font-weight: 600;
 
-      margin-bottom: 24px;
+      margin-top: 48px;
+
+      margin-bottom: 20px;
 
       letter-spacing: -0.4px;
 
@@ -411,12 +413,12 @@
     </div>
 
     <a
-  class="study-link"
-  href="https://www.imquan.com"
-  target="_blank"
->
-  进入学习平台 →
-</a>
+      class="study-link"
+      href="https://www.imquan.com"
+      target="_blank"
+    >
+      进入学习平台 →
+    </a>
 
     <div class="stats">
 
@@ -482,10 +484,6 @@
 
     </div>
 
-    <div class="section-title">
-      课程列表
-    </div>
-
     <div
       class="courses"
       id="courses"
@@ -516,20 +514,57 @@
     const courseData = [
 
       {
-        name: "基础理论课程-心理学导论",
 
-        form: "培训形式：线上录播",
+        section: "理论课程",
 
-        total: 16,
+        courses: [
 
-        completed: 0,
+          {
+            name: "心理学导论",
+            form: "培训形式：线上录播",
+            total: 16,
+            completed: 0,
+            logs: []
+          },
 
-        logs: [
+          {
+            name: "社会心理学",
+            form: "培训形式：线上录播",
+            total: 16,
+            completed: 0,
+            logs: []
+          },
 
-           {
-          date: "2026-05-19",
-          duration: 1.5,
-          notes: "完成第一讲"
+          {
+            name: "人格心理学",
+            form: "培训形式：线上录播",
+            total: 16,
+            completed: 0,
+            logs: []
+          },
+
+          {
+            name: "发展心理学",
+            form: "培训形式：线上录播",
+            total: 16,
+            completed: 0,
+            logs: []
+          },
+
+          {
+            name: "异常心理学",
+            form: "培训形式：线上录播",
+            total: 16,
+            completed: 0,
+            logs: []
+          },
+
+          {
+            name: "咨询心理学",
+            form: "培训形式：线上录播",
+            total: 16,
+            completed: 0,
+            logs: []
           }
 
         ]
@@ -537,145 +572,60 @@
       },
 
       {
-        name: "基础理论课程-社会心理学",
 
-        form: "培训形式：线上录播",
-
-        total: 16,
-
-        completed: 0,
-
-        logs: []
-
-      },
-
-      {
-        name: "基础理论课程-人格心理学",
-
-        form: "培训形式：线上录播",
-
-        total: 16,
-
-        completed: 0,
-
-        logs: []
-
-      },
-
-      {
-        name: "基础理论课程-发展心理学",
-
-        form: "培训形式：线上录播",
-
-        total: 16,
-
-        completed: 0,
-
-        logs: []
-
-      },
-
-      {
-        name: "基础理论课程-异常心理学",
-
-        form: "培训形式：线上录播",
-
-        total: 16,
-
-        completed: 0,
-
-        logs: []
-
-      },
-
-      {
-        name: "基础理论课程-咨询心理学",
-
-        form: "培训形式：线上录播",
-
-        total: 16,
-
-        completed: 0,
-
-        logs: []
-
-      },
-
-      {
-        name: "实务课程-初次接待与会谈技巧",
-
-        form: "培训形式：线上录播",
-
-        total: 16,
-
-        completed: 0,
-
-        logs: []
-
-      },
-
-      {
-        name: "实务课程-情绪调节与压力管理",
-
-        form: "培训形式：线上录播",
-
-        total: 16,
-
-        completed: 0,
-
-        logs: []
-
-      },
-
-      {
-        name: "实务课程-心理危机识别与辅助处置",
-
-        form: "培训形式：线上录播",
-
-        total: 8,
-
-        completed: 0,
-
-        logs: []
-
-      },
-
-      {
-        name: "实务课程-心理咨询专业伦理与相关法律规范",
-
-        form: "培训形式：线上录播",
-
-        total: 8,
-
-        completed: 0,
-
-        logs: []
-
-      },
-
-      {
-        name: "实务课程-家庭教育与心理健康科普",
-
-        form: "培训形式：线上录播",
-
-        total: 16,
-
-        completed: 0,
-
-        logs: []
-
-      },
-
-      {
-        name: "实务课程-心理咨询实务观摩",
-
-        form: "培训形式：线上录播",
-
-        total: 16,
-
-        completed: 0,
-
-        logs: []
+        section: "实务课程",
+
+        courses: [
+
+          {
+            name: "初次接待与会谈技巧",
+            form: "培训形式：线上录播",
+            total: 16,
+            completed: 0,
+            logs: []
+          },
+
+          {
+            name: "情绪调节与压力管理",
+            form: "培训形式：线上录播",
+            total: 16,
+            completed: 0,
+            logs: []
+          },
+
+          {
+            name: "心理危机识别与辅助处置",
+            form: "培训形式：线上录播",
+            total: 8,
+            completed: 0,
+            logs: []
+          },
+
+          {
+            name: "家庭教育与心理健康科普",
+            form: "培训形式：线上录播",
+            total: 16,
+            completed: 0,
+            logs: []
+          },
+
+          {
+            name: "心理咨询专业伦理与相关法律规范",
+            form: "培训形式：线上录播",
+            total: 8,
+            completed: 0,
+            logs: []
+          },
+
+          {
+            name: "心理咨询实务观摩",
+            form: "培训形式：线上录播",
+            total: 16,
+            completed: 0,
+            logs: []
+          }
+
+        ]
 
       }
 
@@ -690,97 +640,132 @@
 
     let completedHours = 0;
 
-    courseData.forEach((course, index) => {
+    let totalCourses = 0;
 
-      totalHours += course.total;
+    courseData.forEach(section => {
 
-      completedHours += course.completed;
-
-      const progress =
-        Math.round(
-          (course.completed / course.total) * 100
-        );
-
-      const courseDiv =
+      const sectionTitle =
         document.createElement("div");
 
-      courseDiv.className = "course";
+      sectionTitle.className =
+        "section-title";
 
-      courseDiv.innerHTML = `
+      sectionTitle.innerText =
+        section.section;
 
-        <div class="course-top">
+      coursesContainer.appendChild(
+        sectionTitle
+      );
 
-          <div class="course-left">
+      section.courses.forEach(
+        (course, index) => {
 
-            <div class="course-name">
-              ${index + 1}. ${course.name}
-            </div>
+        totalCourses += 1;
 
-            <div class="course-tag">
-              ${course.form}
-            </div>
+        totalHours += course.total;
 
-          </div>
+        completedHours +=
+          course.completed;
 
-          <div class="course-meta">
-            ${course.completed} / ${course.total} 学时
-          </div>
+        const progress =
+          Math.round(
+            (course.completed / course.total) * 100
+          );
 
-        </div>
+        const courseDiv =
+          document.createElement("div");
 
-        <div class="progress-bar">
+        courseDiv.className =
+          "course";
 
-          <div
-            class="progress-fill"
-            style="width:${progress}%"
-          ></div>
+        courseDiv.innerHTML = `
 
-        </div>
+          <div class="course-top">
 
-        ${
-          course.logs.length > 0
+            <div class="course-left">
 
-          ?
+              <div class="course-name">
 
-          `
-
-          <div class="logs">
-
-            ${course.logs.map(log => `
-
-              <div class="log-item">
-
-                <div class="log-date">
-
-                  ${log.date}
-                  ·
-                  ${log.duration} 学时
-
-                </div>
-
-                <div class="log-notes">
-
-                  ${log.notes}
-
-                </div>
+                ${index + 1}. ${course.name}
 
               </div>
 
-            `).join("")}
+              <div class="course-tag">
+
+                ${course.form}
+
+              </div>
+
+            </div>
+
+            <div class="course-meta">
+
+              ${course.completed}
+              /
+              ${course.total}
+              学时
+
+            </div>
 
           </div>
 
-          `
+          <div class="progress-bar">
 
-          :
+            <div
+              class="progress-fill"
+              style="width:${progress}%"
+            ></div>
 
-          ""
+          </div>
 
-        }
+          ${
+            course.logs.length > 0
 
-      `;
+            ?
 
-      coursesContainer.appendChild(courseDiv);
+            `
+
+            <div class="logs">
+
+              ${course.logs.map(log => `
+
+                <div class="log-item">
+
+                  <div class="log-date">
+
+                    ${log.date}
+                    ·
+                    ${log.duration} 学时
+
+                  </div>
+
+                  <div class="log-notes">
+
+                    ${log.notes}
+
+                  </div>
+
+                </div>
+
+              `).join("")}
+
+            </div>
+
+            `
+
+            :
+
+            ""
+
+          }
+
+        `;
+
+        coursesContainer.appendChild(
+          courseDiv
+        );
+
+      });
 
     });
 
@@ -790,7 +775,7 @@
       );
 
     document.getElementById("total-courses")
-      .innerText = courseData.length;
+      .innerText = totalCourses;
 
     document.getElementById("completed-hours")
       .innerText = completedHours + " 学时";
