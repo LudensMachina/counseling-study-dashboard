@@ -3,295 +3,434 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>学习热力图</title>
+
+  <title>Psychology Learning Dashboard</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
+
     * {
       box-sizing: border-box;
     }
 
+    :root {
+      --bg: #0a0a0a;
+      --card: #111111;
+      --border: rgba(255,255,255,0.06);
+
+      --text: #fafafa;
+      --muted: #71717a;
+
+      --green: #4ade80;
+      --track: #27272a;
+    }
+
     body {
       margin: 0;
-      padding: 40px;
-      background: #0b1020;
-      color: white;
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+
+      font-family:
+        "Inter",
+        "SF Pro Display",
+        sans-serif;
+
+      padding: 56px;
+
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
     h1 {
-      font-size: 52px;
-      margin-bottom: 10px;
+      font-size: 64px;
+      font-weight: 800;
+
+      letter-spacing: -3px;
+
+      margin: 0 0 14px 0;
+
+      line-height: 0.95;
     }
 
     .subtitle {
-      color: #94a3b8;
-      margin-bottom: 50px;
+      color: var(--muted);
+
+      font-size: 15px;
+
+      letter-spacing: 0.3px;
+
+      margin-bottom: 64px;
     }
 
     .stats {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-bottom: 50px;
+      display: grid;
+
+      grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+      gap: 18px;
+
+      margin-bottom: 56px;
     }
 
     .card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: var(--card);
+
+      border: 1px solid var(--border);
+
       border-radius: 24px;
-      padding: 24px;
-      min-width: 220px;
+
+      padding: 28px;
     }
 
     .card-title {
-      color: #94a3b8;
-      font-size: 14px;
-      margin-bottom: 8px;
+      color: var(--muted);
+
+      font-size: 13px;
+
+      margin-bottom: 12px;
+
+      letter-spacing: 0.3px;
     }
 
     .card-value {
-      font-size: 36px;
-      font-weight: bold;
+      font-size: 44px;
+
+      font-weight: 700;
+
+      letter-spacing: -2px;
     }
 
-    .heatmap-container {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 24px;
-      padding: 30px;
-      overflow-x: auto;
+    .section-title {
+      font-size: 22px;
+
+      font-weight: 700;
+
+      letter-spacing: -0.8px;
+
+      margin-bottom: 24px;
     }
 
-    .heatmap {
-      display: flex;
-      gap: 4px;
-    }
-
-    .week {
+    .courses {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 18px;
     }
 
-    .day {
-      width: 14px;
-      height: 14px;
-      border-radius: 3px;
-      background: #161b22;
-      transition: 0.2s;
+    .course {
+      background: var(--card);
+
+      border: 1px solid var(--border);
+
+      border-radius: 24px;
+
+      padding: 24px;
     }
 
-    .day:hover {
-      transform: scale(1.2);
-    }
-
-    .level-1 { background: #0e4429; }
-    .level-2 { background: #006d32; }
-    .level-3 { background: #26a641; }
-    .level-4 { background: #39d353; }
-
-    .legend {
+    .course-top {
       display: flex;
+
+      justify-content: space-between;
+
       align-items: center;
-      gap: 8px;
-      margin-top: 20px;
-      color: #94a3b8;
-      font-size: 12px;
+
+      margin-bottom: 16px;
     }
 
-    .legend-box {
-      width: 14px;
-      height: 14px;
-      border-radius: 3px;
+    .course-name {
+      font-size: 18px;
+
+      font-weight: 600;
+
+      letter-spacing: -0.4px;
     }
 
-    .records {
-      margin-top: 50px;
+    .course-meta {
+      font-size: 14px;
+
+      color: var(--muted);
     }
 
-    .record {
-      background: rgba(255,255,255,0.05);
-      border-radius: 20px;
-      padding: 20px;
-      margin-bottom: 15px;
+    .progress-bar {
+      width: 100%;
+      height: 10px;
+
+      background: var(--track);
+
+      border-radius: 999px;
+
+      overflow: hidden;
     }
 
-    .record-date {
-      color: #39d353;
-      margin-bottom: 10px;
-      font-weight: bold;
+    .progress-fill {
+      height: 100%;
+
+      background: var(--green);
+
+      border-radius: 999px;
+
+      transition: width 0.4s ease;
     }
 
-    .record-note {
-      color: #d1d5db;
-      line-height: 1.6;
+    .footer {
+      margin-top: 72px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+    }
+
+    @media (max-width: 768px) {
+
+      body {
+        padding: 28px;
+      }
+
+      h1 {
+        font-size: 46px;
+      }
+
+      .card-value {
+        font-size: 36px;
+      }
+
     }
 
   </style>
 </head>
+
 <body>
 
-  <h1>学习热力图</h1>
+  <div class="container">
 
-  <div class="subtitle">
-    Learning Dashboard
+    <h1>
+      Psychology<br>
+      Learning Dashboard
+    </h1>
+
+    <div class="subtitle">
+      Personal learning progress tracker
+    </div>
+
+    <div class="stats">
+
+      <div class="card">
+
+        <div class="card-title">
+          Total Courses
+        </div>
+
+        <div
+          class="card-value"
+          id="total-courses"
+        >
+          0
+        </div>
+
+      </div>
+
+      <div class="card">
+
+        <div class="card-title">
+          Completed Hours
+        </div>
+
+        <div
+          class="card-value"
+          id="completed-hours"
+        >
+          0h
+        </div>
+
+      </div>
+
+      <div class="card">
+
+        <div class="card-title">
+          Total Hours
+        </div>
+
+        <div
+          class="card-value"
+          id="total-hours"
+        >
+          0h
+        </div>
+
+      </div>
+
+      <div class="card">
+
+        <div class="card-title">
+          Overall Progress
+        </div>
+
+        <div
+          class="card-value"
+          id="overall-progress"
+        >
+          0%
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="section-title">
+      Courses
+    </div>
+
+    <div
+      class="courses"
+      id="courses"
+    ></div>
+
+    <div class="footer">
+      Update progress manually in the
+      <code>courseData</code> array.
+    </div>
+
   </div>
-
-  <div class="stats">
-
-    <div class="card">
-      <div class="card-title">累计学习天数</div>
-      <div class="card-value" id="study-days">0</div>
-    </div>
-
-    <div class="card">
-      <div class="card-title">累计学习时长</div>
-      <div class="card-value" id="study-hours">0h</div>
-    </div>
-
-    <div class="card">
-      <div class="card-title">当前 Streak</div>
-      <div class="card-value" id="streak">0</div>
-    </div>
-
-  </div>
-
-  <div class="heatmap-container">
-
-    <div class="heatmap" id="heatmap"></div>
-
-    <div class="legend">
-
-      <span>Less</span>
-
-      <div class="legend-box" style="background:#161b22;"></div>
-      <div class="legend-box" style="background:#0e4429;"></div>
-      <div class="legend-box" style="background:#006d32;"></div>
-      <div class="legend-box" style="background:#26a641;"></div>
-      <div class="legend-box" style="background:#39d353;"></div>
-
-      <span>More</span>
-
-    </div>
-
-  </div>
-
-  <div class="records" id="records"></div>
 
   <script>
 
-    // =====================
-    // 以后每天只改这里
-    // =====================
+    // ==========================
+    // ONLY EDIT THIS PART
+    // ==========================
 
-    const studyData = [
+    const courseData = [
+
+      {
+        name: "普通心理学",
+        total: 48,
+        completed: 0
+      },
+
+      {
+        name: "社会心理学",
+        total: 48,
+        completed: 0
+      },
+
+      {
+        name: "人格心理学",
+        total: 48,
+        completed: 0
+      },
+
+      {
+        name: "发展心理学",
+        total: 48,
+        completed: 0
+      },
+
+      {
+        name: "异常心理学",
+        total: 48,
+        completed: 0
+      },
+
+      {
+        name: "咨询心理学",
+        total: 48,
+        completed: 0
+      },
+
+      {
+        name: "心理测量学",
+        total: 48,
+        completed: 0
+      },
+
+      {
+        name: "心理咨询技能",
+        total: 48,
+        completed: 0
+      }
 
     ];
 
-    // =====================
+    // ==========================
 
-    const heatmap =
-      document.getElementById("heatmap");
+    const coursesContainer =
+      document.getElementById("courses");
 
-    const records =
-      document.getElementById("records");
+    let totalHours = 0;
+    let completedHours = 0;
 
-    const startDate =
-      new Date("2026-01-01");
+    courseData.forEach(course => {
 
-    const totalDays = 365;
+      totalHours += course.total;
 
-    for(let i = 0; i < 53; i++) {
+      completedHours += course.completed;
 
-      const week =
-        document.createElement("div");
-
-      week.className = "week";
-
-      for(let j = 0; j < 7; j++) {
-
-        const dayIndex = i * 7 + j;
-
-        if(dayIndex >= totalDays) break;
-
-        const currentDate =
-          new Date(startDate);
-
-        currentDate.setDate(
-          startDate.getDate() + dayIndex
+      const progress =
+        Math.round(
+          (course.completed / course.total) * 100
         );
 
-        const dateString =
-          currentDate.toISOString().split("T")[0];
-
-        const day =
-          document.createElement("div");
-
-        day.className = "day";
-
-        const found = studyData.find(
-          d => d.date === dateString
-        );
-
-        if(found) {
-
-          day.classList.add(
-            `level-${found.level}`
-          );
-
-          day.title =
-            `${found.date}\n${found.note}`;
-        }
-
-        week.appendChild(day);
-
-      }
-
-      heatmap.appendChild(week);
-
-    }
-
-    // Stats
-
-    document.getElementById("study-days")
-      .innerText = studyData.length;
-
-    const totalHours = studyData.reduce(
-      (acc, cur) => acc + cur.hours,
-      0
-    );
-
-    document.getElementById("study-hours")
-      .innerText = totalHours + "h";
-
-    document.getElementById("streak")
-      .innerText = studyData.length;
-
-    // Records
-
-    studyData
-      .slice()
-      .reverse()
-      .forEach(item => {
-
-      const div =
+      const courseDiv =
         document.createElement("div");
 
-      div.className = "record";
+      courseDiv.className = "course";
 
-      div.innerHTML = `
-        <div class="record-date">
-          ${item.date}
+      courseDiv.innerHTML = `
+
+        <div class="course-top">
+
+          <div class="course-name">
+            ${course.name}
+          </div>
+
+          <div class="course-meta">
+            ${course.completed} / ${course.total}h
+          </div>
+
         </div>
 
-        <div class="record-note">
-          ${item.note}
+        <div class="progress-bar">
+
+          <div
+            class="progress-fill"
+            style="width:${progress}%"
+          ></div>
+
         </div>
+
       `;
 
-      records.appendChild(div);
+      coursesContainer.appendChild(courseDiv);
 
     });
+
+    const overallProgress =
+      Math.round(
+        (completedHours / totalHours) * 100
+      );
+
+    document.getElementById("total-courses")
+      .innerText = courseData.length;
+
+    document.getElementById("completed-hours")
+      .innerText = completedHours + "h";
+
+    document.getElementById("total-hours")
+      .innerText = totalHours + "h";
+
+    document.getElementById("overall-progress")
+      .innerText = overallProgress + "%";
 
   </script>
 
